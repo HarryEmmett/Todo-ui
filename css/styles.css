@@ -1,0 +1,42 @@
+html,
+body {
+    height: 100%;
+    background: rgba(200, 199, 199, 0.692);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#main-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    height: 100%;
+}
+
+#header-container {
+
+}
+
+#page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px;
+    box-sizing: border-box;
+    grid-column-start: 3;
+    grid-column-end: 11;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+@media (max-width: 650px) {
+   #page-content {
+    grid-column-start: 1;
+    grid-column-end: 13;
+   }
+}
