@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Ui</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body>
+    <div id="main-container">
+        <div id="page-content">
+            <h3>Todo Ui</h3>
+            <div id="header-container">
+                <button id="home-button" type="button">Home</button>
+                <button id="weekly-button" type="button">This week...</button>
+                <input placeholder="Search...">
+                <button id="create-button" type="button">create </button>
+            </div>
+            <div id="displayed-todos-container">
+
+            </div>
+        </div>
+        <div id="modal">
+            <form id="create-todo-form">
+                <div id="modal-header">
+                    <h2>Create Todo</h2>
+                    <button id="close-modal-button" type="button"> close </button>
+                </div>
+                <div>
+                    <input type="text" title="Enter title" id="modal-title" required/>
+                    <textarea placeholder="Enter description" id="modal-textarea" required></textarea>
+                    <button type="submit" >Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
