@@ -1,4 +1,4 @@
-import { toggleModal, updateTodoList, getFormData, changePage, initialisePage } from "./domManipulation";
+import { toggleModal, initialisePage, handlePageButton, handleFormSubmit } from "./domManipulation";
 
 const currentTodos = {
     home: [
@@ -22,10 +22,9 @@ initialisePage(currentTodos.home);
 
 pagebuttons.forEach((button) => {
     button.addEventListener("click", (e) => {
-        const page = button.id.split("-button")[0];
-        changePage(page, currentTodos);
+        const page = handlePageButton(button, currentTodos);
         currentPage = page;
-    });
+    })
 })
 
 createButton.addEventListener("click", (e) => {
@@ -38,22 +37,7 @@ closeModalButton.addEventListener("click", (e) => {
 
 createTodoForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    const data = getFormData(currentTodos);
-    if (data) {
-        currentTodos.home.push(data);
-
-        const date = new Date();
-       
-        const diffenceInTime = data.date.getTime() - date.getTime();
-        const differenceDays = diffenceInTime / ( 1000 * 3600 * 24);
-       
-        if (differenceDays < 7) {
-            currentTodos.weekly.push(data);
-        }
-        updateTodoList(currentTodos[currentPage], currentPage);
-        toggleModal(true);
-    }
+    handleFormSubmit(currentTodos, "home");
 });
 
 

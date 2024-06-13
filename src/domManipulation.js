@@ -64,4 +64,29 @@ const initialisePage = (todos) => {
     })
 }
 
-export { toggleModal, updateTodoList, getFormData, changePage, initialisePage };
+const handlePageButton = (button, currentTodos) => {
+    const page = button.id.split("-button")[0];
+    changePage(page, currentTodos);
+    return page;
+}
+
+const handleFormSubmit = (currentTodos, currentPage) => {
+    const data = getFormData(currentTodos);
+    if (data) {
+        currentTodos.home.push(data);
+
+        const date = new Date();
+
+        const diffenceInTime = data.date.getTime() - date.getTime();
+        const differenceDays = diffenceInTime / (1000 * 3600 * 24);
+
+        if (differenceDays < 7) {
+            currentTodos.weekly.push(data);
+        }
+
+        updateTodoList(currentTodos[currentPage], currentPage);
+        toggleModal(true);
+    }
+}
+
+export { toggleModal, updateTodoList, changePage, initialisePage, handlePageButton, handleFormSubmit };
