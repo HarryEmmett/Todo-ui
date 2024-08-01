@@ -4,38 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo Ui</title>
+    <title>TODO UI</title>
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
     <div id="main-container">
         <div id="page-content">
-            <h3>Todo Ui</h3>
+            <h3 style="margin: 8px;">TODO UI</h3>
             <div id="header-container">
-                <button id="home-button" type="button">Home</button>
-                <button id="weekly-button" type="button">This week...</button>
-                <input placeholder="Search...">
-                <button id="create-button" type="button">create </button>
+                <button id="home-button" type="button" class="default-button text-button page-buttons">Home</button>
+                <button id="weekly-button" type="button" class="default-button text-button page-buttons">This
+                    week</button>
+                <button id="favourites-button" type="button"
+                    class="default-button text-button page-buttons">Favourites</button>
+                <input id="search-bar" placeholder="Filter Todos..." type="text">
+                <button id="create-button" class="default-button create-button" type="button">
+                    <span class="material-icons">add</span>
+                </button>
             </div>
             <div id="displayed-todos-container">
 
             </div>
+            <h5 id="todo-count" style="margin: 0;"></h5>
         </div>
         <div id="modal">
             <form id="create-todo-form">
                 <div id="modal-header">
                     <h2>Create Todo</h2>
-                    <button id="close-modal-button" type="button"> close </button>
+                    <button id="close-button" class="default-button close-button" type="button">
+                        <span class="material-icons">close</span>
+                    </button>
                 </div>
-                <div>
-                    <input type="text" title="Enter title" id="modal-title" required/>
-                    <textarea placeholder="Enter description" id="modal-textarea" required></textarea>
-                    <button type="submit" >Create</button>
+                <div id="modal-body">
+                    <input type="text" title="Enter title" id="modal-title" placeholder="Enter a title..." required />
+                    <textarea placeholder="Enter description..." id="modal-textarea" required></textarea>
+                    <input id="date-input" type="date">
+                    <button class="default-button text-button" type="submit">Create</button>
                 </div>
             </form>
         </div>
     </div>
+    <div class="modal-backdrop" id="modal-backdrop"></div>
     <script src="main.js"></script>
 </body>
 

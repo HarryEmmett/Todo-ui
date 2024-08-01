@@ -5,6 +5,31 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+input {
+    border: none;
+    background-color: lightblue;
+    border-radius: 8px;
+    height: 30px;
+    padding-left: 20px;
+}
+
+textarea {
+    border: none;
+    background-color: lightblue;
+    border-radius: 8px;
+    min-height: 75px;
+    width: 200px;
+    padding-left: 20px;
+}
+
+input:hover {
+    background-color: lightskyblue;
+}
+
+textarea:hover {
+    background-color: lightskyblue;
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -17,7 +42,9 @@ body {
 }
 
 #header-container {
-
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 #page-content {
@@ -32,29 +59,150 @@ body {
     height: 100%;
     width: 100%;
     background-color: white;
+    border-radius: 8px;
 }
 
 #modal {
     display: none;
     align-items: center;
-    /* justify-content: center; */
     position: fixed;
-    /* width: 300px;
-    height: 300px; */
-    border: 2px solid;
     border-radius: 8px;
     top: 50%;
     left: 50%; 
     transform: translate(-50%, -50%); 
     gap: 12px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    z-index: 1001;
+    background-color: white;
+}
+
+#modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+#create-todo-form {
+    padding: 40px;
 }
 
 #modal-header {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 8px;
 }
 
-@media (max-width: 650px) {
+#modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.default-button {
+    background-color: white;
+    border: none;
+    width: 40px;
+    height: 30px;
+}
+
+.create-button {
+    color: royalblue;
+    border-radius: 8px;
+    background-color: lightblue;
+}
+
+.create-button:hover {
+    background-color: lightskyblue;
+}
+
+.favourite-button {
+    color: gold;
+    border-radius: 8px;
+}
+
+.favourite-button:hover {
+    color: goldenrod;
+}
+
+.close-button {
+    color: pink;
+    border-radius: 8px;
+}
+
+.close-button:hover {
+    background-color: lightcoral;
+}
+
+.text-button {
+    min-width: 80px;
+    border-radius: 8px;
+    color: royalblue;
+    background: lightblue;
+}
+
+.text-button:hover {
+    background-color: lightskyblue;
+}
+
+#modal-title {
+    min-width: 200px;
+}
+
+#displayed-todos-container {
+    display: flex;
+    min-width: 500px;
+    max-width: 500px;
+    height: 100%;
+    max-height: 500px;
+    flex-direction: column;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#date-input {
+    width: 220px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.todo-card-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding-top: 5px;
+    padding-bottom: 40px;
+}
+
+.todo-card {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    padding: 16px 16px 0px 16px;
+    border-radius: 8px;
+    width: 75%;
+}
+
+.todo-card-top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 875px) {
    #page-content {
     grid-column-start: 1;
     grid-column-end: 13;

@@ -1,44 +1,35 @@
-import { toggleModal, initialisePage, handlePageButton, handleFormSubmit } from "./domManipulation";
-
-const currentTodos = {
-    home: [
-        {
-            title: "Test Todo",
-            description: "A Test Todo"
-        }
-    ],
-    weekly: [],
-    favourites: []
-};
-
-let currentPage = "home";
+import { toggleModal, initialisePage, handlePageButton, handleFormSubmit, filterTodos } from "./todoFunctions";
 
 const closeModalButton = document.getElementById("close-button");
 const createButton = document.getElementById("create-button");
 const createTodoForm = document.getElementById("create-todo-form");
+const searchBar = document.getElementById("search-bar");
 const pagebuttons = document.querySelectorAll(".page-buttons");
 
-initialisePage(currentTodos.home);
+initialisePage();
 
 pagebuttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-        const page = handlePageButton(button, currentTodos);
-        currentPage = page;
+    button.addEventListener("click", () => {
+        searchBar.value = "";
+        handlePageButton(button);
     })
 })
 
-createButton.addEventListener("click", (e) => {
+createButton.addEventListener("click", () => {
     toggleModal();
 });
 
-closeModalButton.addEventListener("click", (e) => {
+closeModalButton.addEventListener("click", () => {
     toggleModal(true);
 });
 
 createTodoForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    handleFormSubmit(currentTodos, "home");
+    handleFormSubmit("home");
 });
 
-
+searchBar.addEventListener("input", (e) => {
+    const { value } = e.target;
+    filterTodos(value);
+})
 
