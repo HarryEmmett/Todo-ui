@@ -100,7 +100,7 @@ const handleFormSubmit = () => {
         updateTodoList(currentTodos, currentPage);
 
         toggleModal(true);
-        document.getElementById("todo-count").innerHTML = `Todo count: ${currentTodos.length}`
+        document.getElementById("todo-count").innerText = `Todo count: ${currentTodos.length}`
     }
 }
 
@@ -123,7 +123,58 @@ const deleteTodo = (todoId) => {
     const index = currentTodos.findIndex((todo) => todo.title === todoId);
     currentTodos.splice(index, 1);
     updateTodoList(returnPageTodos(currentTodos), currentPage);
-    document.getElementById("todo-count").innerHTML = `Todo count: ${currentTodos.length}`
+    document.getElementById("todo-count").innerText = `Todo count: ${currentTodos.length}`
 }
 
-export { setMinDate, addToFavourites, deleteTodo, toggleModal, handlePageButton, filterTodos, handleFormSubmit, currentTodos }
+const createTodoCard = (description, title, i) => {
+    const cardDiv = document.createElement("div");
+    cardDiv.className = "todo-card";
+
+    const cardTopBar = document.createElement("div");
+    cardTopBar.className = "todo-card-top-bar";
+    
+    const cardTopBarTitle = document.createElement("p");
+    cardTopBarTitle.style = "margin: 0;";
+    cardTopBarTitle.innerText = title;
+    cardTopBar.appendChild(cardTopBarTitle);
+
+    const topBarButtonDiv = document.createElement("div");
+
+    const favouriteButton = document.createElement("button");
+    favouriteButton.id = `favourite-button-todo-${i}`;
+    favouriteButton.className = "default-button favourite-button";
+    favouriteButton.type = "button";
+
+    const buttonSpanFavourite = document.createElement("span");
+    buttonSpanFavourite.id = title;
+    buttonSpanFavourite.className = "material-icons";
+    buttonSpanFavourite.innerText = "star";
+
+    favouriteButton.appendChild(buttonSpanFavourite);
+    topBarButtonDiv.appendChild(favouriteButton);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.id = `favourite-button-todo-${i}`;
+    deleteButton.className = "default-button close-button close-button-todo";
+    deleteButton.type = "button";
+
+    const buttonSpanDelete = document.createElement("span");
+    buttonSpanDelete.id = title;
+    buttonSpanDelete.className = "material-icons";
+    buttonSpanDelete.innerText = "close";
+
+    deleteButton.appendChild(buttonSpanDelete);
+    topBarButtonDiv.appendChild(deleteButton);
+
+    cardTopBar.appendChild(topBarButtonDiv);
+
+    const todoDescription = document.createElement("p");
+    todoDescription.innerText = description;
+    
+    cardDiv.appendChild(cardTopBar);
+    cardDiv.appendChild(todoDescription);
+
+    return cardDiv;
+}
+
+export { setMinDate, addToFavourites, deleteTodo, toggleModal, handlePageButton, filterTodos, handleFormSubmit, createTodoCard, currentTodos }

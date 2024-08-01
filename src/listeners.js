@@ -1,4 +1,4 @@
-import { setMinDate, addToFavourites, deleteTodo, toggleModal, handlePageButton, filterTodos, handleFormSubmit, currentTodos } from "./todoFunctions";
+import { setMinDate, addToFavourites, deleteTodo, toggleModal, handlePageButton, filterTodos, handleFormSubmit, currentTodos, createTodoCard } from "./todoFunctions";
 
 const initialisePage = () => {
     document.addEventListener("DOMContentLoaded", () => {
@@ -41,32 +41,21 @@ const initialisePage = () => {
 
 const updateTodoList = (todos, page) => {
     const todosContainer = document.getElementById("displayed-todos-container");
-    let todoCard = "";
+    todosContainer.innerHTML = "";
+
+    const todosContainerHeader = document.createElement("h3");
+    todosContainerHeader.innerText = page.toUpperCase();
+
+    todosContainer.appendChild(todosContainerHeader);
+
+    const todoCardDiv = document.createElement("div");
+    todoCardDiv.className = "todo-card-container";
+    
     todos.forEach((todo, i) => {
-        todoCard += `
-        <div class="todo-card">
-            <div class="todo-card-top-bar">
-                <p style="margin: 0;">${todo.title}</p>
-                <div>
-                    <button id="favourite-button-todo-${i}" class="default-button favourite-button" type="button">
-                        <span id="${todo.title}" class="material-icons">star</span>
-                    </button>
-                    <button id="close-button-todo-${i}" class="default-button close-button close-button-todo" type="button">
-                        <span id="${todo.title}" class="material-icons">close</span>
-                    </button>
-                </div>
-            </div>
-            <p>${todo.description}</p>
-        </div>
-        `;
+        todoCardDiv.appendChild(createTodoCard(todo.description, todo.title, i));
     })
 
-    todosContainer.innerHTML = `
-    <h3>${page.toUpperCase()}</h3>
-    <div class="todo-card-container">
-        ${todoCard}
-    </div>
-    `
+    todosContainer.appendChild(todoCardDiv);
 
     const favouriteButton = document.querySelectorAll(".favourite-button");
     const removeTodoButton = document.querySelectorAll(".close-button-todo");
