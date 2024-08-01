@@ -170,7 +170,6 @@ const addToFavourites = (todoId) => {
 }
 
 const deleteTodo = (todoId) => {
-    console.log("called")
     const index = currentTodos.findIndex((todo) => todo.title === todoId);
     currentTodos.splice(index, 1);
     updateTodoList(returnPageTodos(currentTodos));
